@@ -1,41 +1,52 @@
-import { getAllPosts } from "../components/blog/blog.api"
-import PostPreview from "../components/blog/blog.preview"
-import Layout from "../components/layout"
+import fs from "fs";
+import matter from "gray-matter";
+import Head from "next/head";
+import path from "path";
+import { sortByDate } from "../../utils";
+import Post from "../components/Post";
 
-const Recipes = ({ allPosts }) => {
+export default function Blog({ posts }) {
   return (
-    <Layout>
-      <ul>
-        {allPosts.map(({ title, date, slug, coverImage }) => (
-          <PostPreview
-            key={title}
-            date={date}
-            title={title}
-            slug={slug}
-            coverImage={coverImage}
-          />
+    <div>
+      <Head>
+        <title>Dev Blog</title>
+      </Head>
+
+      <div className="posts">
+        {posts.map((post, index) => (
+          <Post key={index} post={post} />
         ))}
-      </ul>
-    </Layout>
-  )
+      </div>
+    </div>
+  );
 }
 
 export async function getStaticProps() {
-  const allPosts = getAllPosts([
-    "title",
-    "date",
-    "slug",
-    "author",
-    "coverImage",
-    "excerpt",
-  ])
-  const sortByDate = (a, b) => {
-    return new Date(b.date) - new Date(a.date)
-  }
+  // Get files from the posts dir
+  const files = fs.readdirSync(path.join("recipes"));
+
+  // Get slug and frontmatter from posts
+  const posts = files.map((filename) => {
+    // Create slug
+    const slug = filename.replace(".md", "");
+
+    // Get frontmatter
+    const markdownWithMeta = fs.readFileSync(
+      path.join("recipes", filename),
+      "utf-8"
+    );
+
+    const { data: frontmatter } = matter(markdownWithMeta);
+
+    return {
+      slug,
+      frontmatter,
+    };
+  });
 
   return {
-    props: { allPosts: allPosts.sort(sortByDate) },
-  }
+    props: {
+      posts: posts.sort(sortByDate),
+    },
+  };
 }
-
-export default Recipes

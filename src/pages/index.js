@@ -1,9 +1,9 @@
-import Layout from "../components/layout";
+const Home = () => (
+  <section>
+    <div>
+      <h1>From Home</h1>
+    </div>
+  </section>
+);
 
-export default function Index() {
-  return (
-    <Layout>
-      <div>qwdqwd</div>
-    </Layout>
-  );
-}
+export default Home;
