@@ -4,6 +4,6 @@ const Home = () => (
       <h1>From Home</h1>
     </div>
   </section>
-);
-
-export default Home;
+)
+// dumb change for dumb reasons
+export default Home
