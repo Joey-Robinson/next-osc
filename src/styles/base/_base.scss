@@ -1,15 +1,21 @@
 @use '../abstracts/fonts';
+@use '../abstracts/colors';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+
 body {
+  background: colors.$primary;
   font-family: 'Poppins', sans-serif;
   font-size: fonts.$mainFont;
+  scroll-behavior: smooth;
 }
 
 p {
@@ -19,5 +25,8 @@ p {
 
 a {
   text-decoration: none;
-  color: #333;
+}
+
+ul, ol {
+  list-style: none;
 }
