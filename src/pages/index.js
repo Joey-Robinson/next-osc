@@ -1,9 +1,11 @@
+import Layout from "../components/global/global.layout"
+
 const Home = () => (
-  <section>
+  <Layout>
     <div>
       <h1>From Home</h1>
     </div>
-  </section>
+  </Layout>
 )
-// dumb change for dumb reasons
+
 export default Home

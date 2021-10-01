@@ -1,40 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+// I can do relative imports in global, but not in
+// Specific files. Ooof.
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-}
-
-p {
-  margin: 15px 0;
-  line-height: 1.8;
-}
-
-a {
-  text-decoration: none;
-  color: #333;
-}
-
+@use 'base/base';
+@use 'components/header';
 img {
   width: 100%;
   border-radius: 10px;
 }
 
-header {
-  background: steelblue;
-  color: #fff;
-  padding: 5px;
-  margin-bottom: 40px;
-}
-
-header a {
-  color: #fff;
-}
 
 .container {
   max-width: 768px;

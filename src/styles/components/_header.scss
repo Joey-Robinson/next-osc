@@ -1,0 +1,12 @@
+@use '../abstracts/colors';
+
+header {
+  background: colors.$accent;
+  color: #fff;
+  padding: 5px;
+  margin-bottom: 40px;
+}
+
+header a {
+  color: #fff;
+}
